@@ -1,6 +1,7 @@
-The TextProvider should serve individual lines from a static text file to clients over the network. The client-
+## The TextProvider should serve individual lines from a static text file to clients over the network. The client-
 server protocol for this system should be the following:
 
+```
 GET <n> => If <n> is a valid line number for the
 text file, you should return "OK\r\n" followed by the <n>th
 line from the text file.
@@ -10,6 +11,8 @@ Note that the lines in the file should be indexed starting from 1,
 not 0.
 QUIT => This command should disconnect the client.
 SHUTDOWN => This command should shutdown the server.
+```
+
 The TextProvider server:
 * must support at least one client and may optionally support many concurrent clients
 .
@@ -26,11 +29,14 @@ You may perform any type of pre-processing on the file as long as the behavior o
 Your system should work well for both large and small files and it should work well as the number of GET
 requests/second increases.
 
-Given a file whose contents are:
+## Given a file whose contents are:
+```
 Humpty Dumpty sat on a wall,
 Humpty Dumpty had a great fall.
 All the king's horses and all the king's men
 Couldn't put Humpty together again.
+```
+```
 You might expect the following:
 CLIENT -> GET 1
 SERVER <- OK
@@ -41,6 +47,7 @@ CLIENT -> GET 3
 SERVER <- OK
 SERVER <- All the king's horses and all the king's men
 CLIENT -> QUIT
+```
 
 You can assume that your system will execute in an environment like that of a m4.xlarge EC2 instance running
 Cent OS 7.x. An m4.xlarge instance has the following properties:
@@ -70,14 +77,14 @@ The system works by reading the file to be served line by line and
  	line is below ~100MB. Java's heap allocation can't handle that 
  	much data. If we change how to store lines from storing them as 
  	Strings to actually use a database, or probably 
- 	using StringBuilder, it will be better as wel
+ 	using StringBuilder, it will be better as well
 
-Problems:
-	* This software will not perform at scale. It does not utilize other
+
+# Problems:
+ - This software will not perform at scale. It does not utilize other
 	drives (for more space on disk), it uses normal String types (depleting
 	Java's heap space quickly), and the transfer over the network is line
 	by line (the size of the line to be transferred is therefore constrained
 	by the size of the buffer).
-	
-	* Multithreading was not implemented as I did not have enough time at all I apologize. but to handle concurrent clients
+- Multithreading was not implemented as I did not have enough time at all I apologize. but to handle concurrent clients
 	we would be able to do that using multithreading.
