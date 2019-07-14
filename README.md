@@ -2,13 +2,13 @@
 server protocol for this system should be the following:
 
 ```
-GET <n> => If <n> is a valid line number for the
-text file, you should return "OK\r\n" followed by the <n>th
-line from the text file.
-If <n> is NOT a valid line number, you should return
-"ERR\r\n".
-Note that the lines in the file should be indexed starting from 1,
-not 0.
+GET <n> => 	If <n> is a valid line number for the
+		text file, you should return "OK\r\n" followed by the <n>th
+		line from the text file.
+		If <n> is NOT a valid line number, you should return
+		"ERR\r\n".
+		Note that the lines in the file should be indexed starting from 1,
+		not 0.
 QUIT => This command should disconnect the client.
 SHUTDOWN => This command should shutdown the server.
 ```
@@ -51,10 +51,12 @@ CLIENT -> QUIT
 
 You can assume that your system will execute in an environment like that of a m4.xlarge EC2 instance running
 Cent OS 7.x. An m4.xlarge instance has the following properties:
+```
 * four vCPUs
 * 16 GB of RAM
 * EBS Storage
 Nothing else will run on that machine so all the resources are available to your system.
+```
 
 
 How to run the system?
