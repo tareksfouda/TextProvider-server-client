@@ -88,5 +88,5 @@ The system works by reading the file to be served line by line and
 	Java's heap space quickly), and the transfer over the network is line
 	by line (the size of the line to be transferred is therefore constrained
 	by the size of the buffer).
-- Multithreading was not implemented as I did not have enough time at all I apologize. but to handle concurrent clients
+- Multithreading is not implemented but to handle concurrent clients
 	we would be able to do that using multithreading.
